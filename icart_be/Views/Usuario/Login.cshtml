@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/index.css">
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<div id="main">
+    <div id="container-login">
+        <p id="login">Login</p>
+        <br><br><br>
+        <form action="" style="padding-left: 40px;" method="post">
+            <input type="text" name="Email" placeholder="E-mail:">
+            <br><br><br><br>
+            <input type="text" name="Senha" placeholder="Senha:">
+            <br><br><br>
+            <p id="texto-cadastro-estabelecimento" style="padding-left: 2px;">
+                Não possui uma conta? <a href="" style="color: white;">cadastre seu estabelecimento</a>
+            </p>
+            <br><br><br>
+            <div id="container-button-entrar">
+                <a href=""><input type="button" value="Entrar" id="bt-entrar" style="color: white; font-size: 19px; font-weight: 900; cursor: pointer;"></a> <!-- color type em submit -->
+            </div>
+        </form>
+    </div>
+</div>

@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap" rel="stylesheet">
+    <title>@ViewData["Title"]</title>
 </head>
 <body>
     <header>
@@ -21,24 +22,29 @@
         <div id="espaco"></div>
         <a href="perfil.html">
             <div style="padding-top: 5px;">
-                <img src="img/perfil.svg" id="img-header" alt="perfil">
+                <img src="~/img/perfil.svg" id="img-header" alt="perfil">
             </div>
         </a>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - icart_be - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    @RenderBody()
+    <footer>
+        <img src="~/img/icart_logo.png" alt="logo" id="img-logo-icart">
+        <div id="espaco-footer"></div>
+        <div id="col-branca"></div>
+        <div id="meios-contato">
+            <div id="cont-contato">
+                <img src="~/img/email.svg" alt="email" id="img-contato">
+                <div id="cont-texto-contato">
+                    <p id="texto-contato">icart@gmail.com</p>
+                </div>
+            </div>
+            <div id="cont-contato">
+                <img src="~/img/telefone.svg" alt="telefone" id="img-contato">
+                <div id="cont-texto-contato">
+                    <p id="texto-contato">(19) 99186-7097</p>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,1 +1,272 @@
-﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'League Spartan', sans-serif;
+    color: black;
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    background-color: #A5CF20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#img-header {
+    width: 60px;
+    height: 60px;
+}
+
+#espaco {
+    width: 1765px;
+    height: 70px;
+    background-color: transparent;
+}
+
+#cont-propaganda {
+    width: 100%;
+    height: 550px;
+    background-color: white;
+    display: flex;
+}
+
+#propaganda {
+    width: 960px;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#img-propaganda {
+    width: 800px;
+    height: 550px;
+}
+
+#texto-propaganda-v {
+    color: black;
+    font-size: 58px;
+    font-weight: 900;
+}
+
+#cor-azul {
+    color: #FF6161;
+}
+
+#cor-verde {
+    color: #7ED956;
+}
+
+#cont-compra {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #F1F1F1;
+
+}
+
+.cont-planos {
+    width: 640px;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+}
+
+.plano {
+    width: 300px;
+    height: 420px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 50px;
+    filter: drop-shadow(0 0 0.3rem gray);
+    padding-top: 20px;
+    padding-top: 45px;
+}
+
+.tamanho-estabelecimento, .preco{
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Gothic A1', sans-serif;
+}
+
+.bto-comprar {
+    font-size: 25px;
+    color: white;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: 600;
+    filter: drop-shadow(0 0 0.3rem gray);
+}
+
+#licenca {
+    background-color: #D9D9D9;
+    width: 210px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 11px;
+}
+
+.comprar {
+    width: 230px;
+    height: 60px;
+    text-align: center;
+    border: none;
+    border-radius: 28px;
+    background-color: #78B6CA;
+}
+
+.cont-desc {
+    width: 270px;
+    height: 100px;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#img-check {
+    width: 20px;
+    height: 20px;
+}
+
+.cont-img-check {
+    width: 25px;
+    height: 100px;
+    padding-top: 5px;
+}
+
+.descricao {
+    width: 160px;
+    height: 100px;
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.texto-descricao {
+    font-size: 20px;
+}
+
+#garantias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 50px;
+    height: 450px;
+}
+
+#img-garantia {
+    width: 1210px;
+    height: 290px;
+}
+
+footer {
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 10px;
+}
+
+#espaco-footer {
+    width: 1572px;
+    height: 70px;
+    background-color: transparent;
+}
+
+#col-branca {
+    width: 1px;
+    height: 50px;
+    background-color: white;
+}
+
+#meios-contato {
+    width: 220px;
+    height: 70px;
+    display: inline-block;
+    padding-top: 15px;
+}
+
+#cont-contato {
+    width: 170px;
+    height: 20px;
+    display: flex;
+    padding-left: 25px;
+}
+
+#img-contato {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+#texto-contato {
+    font-size: 17px;
+    color: white;
+}
+
+#cont-texto-contato {
+    padding-top: 3px;
+    padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

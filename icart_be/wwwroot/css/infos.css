@@ -1,0 +1,91 @@
+#box-texto-mais-vendidos {
+    width: 410px;
+    height: 55px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: black;
+}
+
+#box-lugares-mais-vendidos {
+    width: 450px;
+    height: 55px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: black;
+}
+
+.titulo-grande {
+    font-size: 40px;
+    color: white;
+}
+
+.texto-mais-vendidos {
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+#container-informacoes {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+}
+
+#texto-informacoes {
+    margin: 40px 335px 60px 350px;
+    font-size: 40px;
+}
+
+#box-lugares-vendas-esquerda {
+    width: 960px;
+    display: inline-block;
+    height: 100px;
+    padding-left: 12px;
+}
+
+#box-lugares-vendas-direita {
+    width: 960px;
+    display: inline-block;
+    height: 100px;
+    padding-left: 15px;
+}
+
+#nome-loja {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 35px;
+}
+
+#endereco {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 25px;
+    color: gray;
+}
+
+#total-vendas {
+    margin: 15px 200px 0px 200px;
+    font-size: 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#linha-cinza {
+    color: gray;
+    width: 1400px;
+    display: flex;
+    margin: auto;
+}

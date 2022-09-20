@@ -1,0 +1,25 @@
+#box-historico-vendas {
+    width: 310px;
+    height: 70px;
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    background-color: black;
+    margin-top: 50px;
+}
+
+.texto-ultimas-vendas {
+    font-size: 30px;
+    font-weight: bold;
+    justify-content: center;
+    margin: auto;
+    display: flex;
+    height: 40px;
+    align-items: center;
+}
+
+.titulo-grande {
+    color: white;
+}

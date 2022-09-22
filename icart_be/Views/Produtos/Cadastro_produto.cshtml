@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Cadastro de produtos";
+}
+
+<head>
+    <link rel="stylesheet" href="css/cadastro-produto.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        header {
+            width: 100%;
+            height: 70px;
+            background-color: #A5CF20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            margin-top: -180px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<main>
+    <div id="lista">
+        <div class="item">
+            <div class="img">
+                <img src="" alt="produto">
+            </div>
+            <div class="informacoes">
+                <p>Chocolate milka</p><br>
+                <p>qtd. 30</p>
+            </div>
+        </div>
+        <hr>
+        <div class="item">
+            <div class="img">
+                <img src="" alt="produto">
+            </div>
+            <div class="informacoes">
+                <p>Chocolate milka</p><br>
+                <p>qtd. 30</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div id="container-cadastro">
+        <form action="post">
+            <p>Produto</p>
+            <input type="text" name="nome" class="preenchimento" placeholder="Nome:">
+            <input type="number" name="codigo" class="preenchimento" placeholder="Cod. de barras:" min="1">
+            <input type="number" name="quantidade" class="preenchimento" placeholder="Quantidade:" min="1">
+            <input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+        </form>
+    </div>
+</main>

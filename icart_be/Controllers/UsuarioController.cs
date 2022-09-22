@@ -8,6 +8,21 @@ namespace icart_be.Controllers
 {
     public class UsuarioController : Controller
     {
+        public IActionResult Cadastro_empresa()
+        {
+            return View();
+        }
+
+        public IActionResult Cadastro_pessoa()
+        {
+            return View();
+        }
+
+        public IActionResult Gerenciador()
+        {
+            return View();
+        }
+
         public IActionResult Infos()
         {
             return View();
@@ -22,7 +37,5 @@ namespace icart_be.Controllers
         {
             return View();
         }
-
-        
     }
 }

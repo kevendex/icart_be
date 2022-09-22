@@ -8,6 +8,11 @@ namespace icart_be.Controllers
 {
     public class UsuarioController : Controller
     {
+        public IActionResult Infos()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -18,9 +23,6 @@ namespace icart_be.Controllers
             return View();
         }
 
-        public IActionResult Infos()
-        {
-            return View();
-        }
+        
     }
 }

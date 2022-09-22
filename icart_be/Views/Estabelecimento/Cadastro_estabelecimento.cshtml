@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Cadastro estabelecimento";
+}
+
+<head>
+    <link rel="stylesheet" href="css/cadastro-perfil.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="container-cadastro">
+    <h1 id="titulo-principal">Cadastro de comércio</h1>
+    <br><br><br><br>
+    <h2 id="titulo-adicional">Informações pessoais</h2>
+    <br><br><br><br><br>
+    <form action="post" id="form-cadastro">
+        <div id="container-linhas-lacunas">
+            <div id="container-lacuna"><input type="text" name="nome" id="lacuna" placeholder="Nome:"></div>
+            <div id="container-lacuna"><input type="text" name="cpf" id="lacuna" placeholder="CPF:"></div>
+            <div id="container-lacuna"><input type="text" name="bairro" id="lacuna" placeholder="Bairro:"></div>
+            <div id="container-lacuna"><input type="text" name="cep" id="lacuna" placeholder="CEP:"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="container-linhas-lacunas">
+            <div id="container-lacuna"><input type="text" name="numero" id="lacuna" placeholder="Número:"></div>
+            <div id="container-lacuna"><input type="text" name="complemento" id="lacuna" placeholder="Complemento:"></div>
+            <div id="container-lacuna"><input type="text" name="uf" id="lacuna" placeholder="UF:"></div>
+            <div id="container-lacuna"><input type="text" name="municipio" id="lacuna" placeholder="Municipio:"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="container-linhas-lacunas">
+            <div id="container-lacuna"><input type="text" name="email" id="lacuna" placeholder="E-mail:"></div>
+            <div id="container-lacuna"><input type="text" name="telefone" id="lacuna" placeholder="Telefone:"></div>
+            <div id="container-lacuna"></div>
+            <div id="container-lacuna"></div>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+        <div id="container-button-continuar">
+            <a href="~/Usuario/Cadastro_empresa">
+                <input type="submit" value="Continuar" id="bto-continuar">
+            </a>
+        </div>
+    </form>
+</div>
+<br>
+<br>
+<br>

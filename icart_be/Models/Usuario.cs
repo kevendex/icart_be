@@ -88,15 +88,26 @@ namespace icart_be.Models
                 con.Open();
                 comando.Connection = con;
                 comando.CommandText = "select email, senha from usuario where email = @email and senha = @senha";
+                comando.Parameters.AddWithValue("@email", email);
+                comando.Parameters.AddWithValue("@senha", senha);
+                MySqlDataReader ler = comando.ExecuteReader();
+                ler.Read();
 
+                if (ler.HasRows)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
             }
-            catch
+            catch(Exception)
             {
-
+                return false;
             }
             finally
             {
-
+                con.Close();
             }
         }
     }

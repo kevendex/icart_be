@@ -51,7 +51,7 @@ namespace icart_be.Models
             {
                 con.Open();
                 comando.Connection = con;
-                comando.CommandText = "insert into usuarios values(@cpf, @email, @cep, @senha, @tipoCliente, @nome, " +
+                comando.CommandText = "INSERT INTO usuarios VALUES(@cpf, @email, @cep, @senha, @tipoCliente, @nome, " +
                     "@telefone, @numEndereco, @municipio, @bairro, @complemento)";
                 comando.Parameters.AddWithValue("@cpf", cpf);
                 comando.Parameters.AddWithValue("@email", email);
@@ -87,7 +87,7 @@ namespace icart_be.Models
             {
                 con.Open();
                 comando.Connection = con;
-                comando.CommandText = "select email, senha from usuario where email = @email and senha = @senha";
+                comando.CommandText = "SELECT email, senha FROM usuario WJERE email = @email and senha = @senha";
                 comando.Parameters.AddWithValue("@email", email);
                 comando.Parameters.AddWithValue("@senha", senha);
                 MySqlDataReader ler = comando.ExecuteReader();
@@ -110,5 +110,7 @@ namespace icart_be.Models
                 con.Close();
             }
         }
+
+
     }
 }

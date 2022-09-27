@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,6 +47,79 @@ namespace icart_be.Models
         public string Cnpj { get => cnpj; set => cnpj = value; }
         public string Senha { get => senha; set => senha = value; }
 
-        pubk
+        public string Cadastrar_estabelecimento()
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                comando.Connection = con;
+                comando.CommandText = "INSERT INTO estabelecimento VALUE(@codigo, @bairro, @tamanho, @cep, @uf, @email, " +
+                    "@nomeFantasia, @telefone, @numEndereco, @municipio, @logradouro, complemento, cnpj, senha)";
+                comando.Parameters.AddWithValue("@codigo", codigo);
+                comando.Parameters.AddWithValue("@bairro", bairro);
+                comando.Parameters.AddWithValue("@tamanho", tamanho);
+                comando.Parameters.AddWithValue("@cep", cep);
+                comando.Parameters.AddWithValue("@uf", uf);
+                comando.Parameters.AddWithValue("@email", email);
+                comando.Parameters.AddWithValue("@nomeFantasia", nome_fantasia);
+                comando.Parameters.AddWithValue("@telefone", telefone);
+                comando.Parameters.AddWithValue("@numEndereco", num_endereco);
+                comando.Parameters.AddWithValue("@municipio", municipio);
+                comando.Parameters.AddWithValue("@logradouro", logradouro);
+                comando.Parameters.AddWithValue("@complemento", complemento);
+                comando.Parameters.AddWithValue("@cnpj", cnpj);
+                comando.Parameters.AddWithValue("@senha", senha);
+                con.Open();
+                comando.ExecuteNonQuery();
+
+                return "Cadastrado com sucesso!";
+            }
+            catch(Exception)
+            {
+                return "Erro!";
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool Logar_estabelecimento()
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                comando.Connection = con;
+                comando.CommandText = "SELECT cnpj, senha FROM estabelecimento WHERE cnpj = @cnpj and senha = @senha";
+                comando.Parameters.AddWithValue("@cnpj", cnpj);
+                comando.Parameters.AddWithValue("@senha", senha);
+                con.Open();
+                MySqlDataReader ler = comando.ExecuteReader();
+                ler.Read();
+
+                if (ler.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public List<> 
     }
 }

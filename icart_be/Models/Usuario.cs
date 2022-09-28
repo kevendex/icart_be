@@ -97,7 +97,8 @@ namespace icart_be.Models
                 {
                     return true;
                 }
-                else{
+                else
+                {
                     return false;
                 }
             }
@@ -110,7 +111,5 @@ namespace icart_be.Models
                 con.Close();
             }
         }
-
-
     }
 }

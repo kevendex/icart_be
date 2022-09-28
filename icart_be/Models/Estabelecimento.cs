@@ -119,7 +119,5 @@ namespace icart_be.Models
                 con.Close();
             }
         }
-
-        public List<> 
     }
 }

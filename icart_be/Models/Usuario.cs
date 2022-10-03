@@ -51,19 +51,19 @@ namespace icart_be.Models
             {
                 con.Open();
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO usuarios VALUES(@cpf, @email, @cep, @senha, @tipoCliente, @nome, " +
-                    "@telefone, @numEndereco, @municipio, @bairro, @complemento)";
-                comando.Parameters.AddWithValue("@cpf", cpf);
-                comando.Parameters.AddWithValue("@email", email);
-                comando.Parameters.AddWithValue("@cep", cep);
+                comando.CommandText = "INSERT INTO usuarios VALUES(@cpf_cliente, @email_cliente, @cep_cliente, @senha, @tipo_cliente, 
+                    + "@nome_cliente, @telefone_cliente, @num_endereco_cliente, @municipio_cliente, @bairro_cliente, @complemento_cliente)";
+                comando.Parameters.AddWithValue("@cpf_cliente", cpf);
+                comando.Parameters.AddWithValue("@email_cliente", email);
+                comando.Parameters.AddWithValue("@cep_cliente", cep);
                 comando.Parameters.AddWithValue("@senha", senha);
-                comando.Parameters.AddWithValue("@tipoCliente", tipoCliente);
-                comando.Parameters.AddWithValue("@nome", nome);
-                comando.Parameters.AddWithValue("@telefone", telefone);
-                comando.Parameters.AddWithValue("@numEndereco", numEndereco);
-                comando.Parameters.AddWithValue("@municipio", municipio);
-                comando.Parameters.AddWithValue("@bairro", bairro);
-                comando.Parameters.AddWithValue("@complemento", complemento);
+                comando.Parameters.AddWithValue("@tipo_cliente", tipoCliente);
+                comando.Parameters.AddWithValue("@nome_cliente", nome);
+                comando.Parameters.AddWithValue("@telefone_cliente", telefone);
+                comando.Parameters.AddWithValue("@num_endereco_cliente", numEndereco);
+                comando.Parameters.AddWithValue("@municipio_cliente", municipio);
+                comando.Parameters.AddWithValue("@bairro_cliente", bairro);
+                comando.Parameters.AddWithValue("@complemento_cliente", complemento);
                 comando.ExecuteNonQuery();
 
                 return "Cadastrado com sucesso!";
@@ -87,7 +87,7 @@ namespace icart_be.Models
             {
                 con.Open();
                 comando.Connection = con;
-                comando.CommandText = "SELECT email, senha FROM usuario WJERE email = @email and senha = @senha";
+                comando.CommandText = "SELECT email, senha FROM usuario WHERE email = @email and senha = @senha";
                 comando.Parameters.AddWithValue("@email", email);
                 comando.Parameters.AddWithValue("@senha", senha);
                 MySqlDataReader ler = comando.ExecuteReader();

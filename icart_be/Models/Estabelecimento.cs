@@ -119,5 +119,39 @@ namespace icart_be.Models
                 con.Close();
             }
         }
+
+        public string Editar_estabelecimento()
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                comando.Connection = con;
+                comando.CommandText = "UPDATE estabelecimento SET @nome_estabel";
+                comando.Parameters.AddWithValue("@cnpj", cnpj);
+                comando.Parameters.AddWithValue("@senha", senha);
+                con.Open();
+                MySqlDataReader ler = comando.ExecuteReader();
+                ler.Read();
+
+                if (ler.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

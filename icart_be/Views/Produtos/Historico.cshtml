@@ -21,10 +21,10 @@
         Últimas vendas
     </h1>
 </div>
-@foreach (icart_be.Models.Venda p in Model)
+@foreach (icart_be.Models.Venda v in Model)
 {
     <br>
     <br>
-    <p class="texto-ultimas-vendas"> R$@p.Preco_total - @p.Cpf_cliente - @p.Data_compra </p>
+    <p class="texto-ultimas-vendas"> R$@v.Preco_total - @v.Cpf_cliente - @v.Data_compra </p>
 }
 

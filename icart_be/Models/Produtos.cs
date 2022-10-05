@@ -8,7 +8,7 @@ namespace icart_be.Models
 {
     public class Produtos
     {
-        private string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
+        private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
         private string codigo, nome, codigo_barras, preco_produto, tipo_produto;
         private int estoque;
         private byte[] imagem;
@@ -63,7 +63,7 @@ namespace icart_be.Models
             }
         }
 
-        public List<Produtos> Listar()
+        public static List<Produtos> Listar()
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -97,7 +97,7 @@ namespace icart_be.Models
             }
         }
 
-        public string Excluir_Produto(string codigo)
+        public static string Excluir_Produto(string codigo)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -115,6 +115,32 @@ namespace icart_be.Models
             catch(Exception)
             {
                 return "Erro!";
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public string Alterar()
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            MySqlCommand comando = new MySqlCommand();
+
+            try
+            {
+                comando.Connection = con;
+                comando.CommandText = "UPDATE produtos SET estoque = @estoque WHERE codProduto = @codigo";
+                comando.Parameters.AddWithValue("@estoque", estoque);
+                comando.Parameters.AddWithValue("@codigo", codigo);
+                con.Open();
+                comando.ExecuteNonQuery();
+
+                return "Alterado Com Sucesso";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
             finally
             {

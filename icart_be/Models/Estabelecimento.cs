@@ -120,33 +120,26 @@ namespace icart_be.Models
             }
         }
 
-        public string Editar_estabelecimento()
+        public string Alterar_dados()
         {
             MySqlConnection con = new MySqlConnection(conexao);
-            MySqlCommand comando = new MySqlCommand();
+            MySqlCommand coman = new MySqlCommand();
 
             try
             {
-                comando.Connection = con;
-                comando.CommandText = "UPDATE estabelecimento SET @nome_estabel";
-                comando.Parameters.AddWithValue("@cnpj", cnpj);
-                comando.Parameters.AddWithValue("@senha", senha);
+                coman.Connection = con;
+                coman.CommandText = "UPDATE estabelecimento SET nome_fantasia = @nome_fantasia , senha = @senha , email_estabel = @email_estabel WHERE cnpj_estabel = @cnpj_estabel";
+                coman.Parameters.AddWithValue("@nome_fantasia", nome_fantasia);
+                coman.Parameters.AddWithValue("@senha", senha);
+                coman.Parameters.AddWithValue("@email_estabel", email);
                 con.Open();
-                MySqlDataReader ler = comando.ExecuteReader();
-                ler.Read();
+                coman.ExecuteNonQuery();
 
-                if (ler.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return "Alterado Com Sucesso";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return false;
+                return e.Message;
             }
             finally
             {

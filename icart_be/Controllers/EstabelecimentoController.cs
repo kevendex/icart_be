@@ -107,5 +107,24 @@ namespace icart_be.Controllers
             HttpContext.Session.Remove("user");
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult AlterarDados()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Alterar_dados(string nome_fantasia, string email, string senha)
+        {
+            Estabelecimento e = new Estabelecimento(null, null, null, null, null, email, nome_fantasia, null, null, null, null, null, null, null, senha);
+            e.Alterar_dados();
+            Usuario sessao = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("user").ToString());
+            sessao.Nome = nome_fantasia;
+            sessao.Email = email;
+            sessao.Senha = senha;
+            HttpContext.Session.SetString("user", JsonConvert.SerializeObject(sessao));
+
+            return RedirectToAction("Usuario", "Perfil");
+        }
     }
 }

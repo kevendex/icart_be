@@ -1,4 +1,5 @@
-﻿@{
+﻿@model icart_be.Models.Produtos
+@{
     ViewData["Title"] = "Cadastro de produtos";
 }
 
@@ -25,35 +26,20 @@
     </style>
 </head>
 <main>
-    <div id="lista">
-        <div class="item">
-            <div class="img">
-                <img src="" alt="produto">
-            </div>
-            <div class="informacoes">
-                <p>Chocolate milka</p><br>
-                <p>qtd. 30</p>
-            </div>
-        </div>
-        <hr>
-        <div class="item">
-            <div class="img">
-                <img src="" alt="produto">
-            </div>
-            <div class="informacoes">
-                <p>Chocolate milka</p><br>
-                <p>qtd. 30</p>
-            </div>
-        </div>
-        <hr>
-    </div>
     <div id="container-cadastro">
-        <form action="post">
+        <form method="post" enctype="multipart/form-data">
             <p>Produto</p>
-            <input type="text" name="nome" class="preenchimento" placeholder="Nome:">
-            <input type="number" name="codigo" class="preenchimento" placeholder="Cod. de barras:" min="1">
-            <input type="number" name="quantidade" class="preenchimento" placeholder="Quantidade:" min="1">
-            <input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+            <input type="text" name="nome_produto" class="preenchimento" placeholder="Nome:" min="1" max="50">
+            <input type="number" name="cod_produto" class="preenchimento" placeholder="Cod. do produto:" min="1" max="8">
+            <input type="number" name="cod_barras" class="preenchimento" placeholder="Cod. de barras:" min="1" max="13">
+            <input type="number" name="cod_estabel" class="preenchimento" placeholder="Cod. do estabelecimento:" min="1" max="6">
+            <input type="number" name="estoque" class="preenchimento" placeholder="Estoque:" min="0">
+            <input type="number" name="preco_produto" class="preenchimento" placeholder="Preço:" min="1">
+            <input type="text" name="tipo_produto" class="preenchimento" placeholder="Tipo do produto:" min="1">
+            <p>Imagem</p>
+            <input type="file" value="imagem" id="preenchimento" name="Imagem">
+            <br>
+            <input type="submit" value="Cadastrar" id="cadastrar">
         </form>
     </div>
 </main>

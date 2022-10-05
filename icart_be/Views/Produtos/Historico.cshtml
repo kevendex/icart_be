@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<icart_be.Models.Venda>
+@{
     ViewData["Title"] = "Histórico de vendas";
 }
 
@@ -20,14 +21,10 @@
         Últimas vendas
     </h1>
 </div>
-<br>
-<br>
-<p class="texto-ultimas-vendas">159 -Arroz (Camil)</p>
-<br>
-<br>
-<p class="texto-ultimas-vendas">159 -Arroz (Camil)</p>
-<br>
-<br>
-<p class="texto-ultimas-vendas">159 -Arroz (Camil)</p>
-<br>
-<br>
+@foreach (icart_be.Models.Venda p in Model)
+{
+    <br>
+    <br>
+    <p class="texto-ultimas-vendas"> R$@p.Preco_total - @p.Cpf_cliente - @p.Data_compra </p>
+}
+

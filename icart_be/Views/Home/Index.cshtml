@@ -1,11 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@{
     ViewData["Title"] = "Página inicial";
 }
 
 <br>
 <div id="cont-propaganda">
     <div>
-        <img src="~/img/propaganda_app.png" id="img-propaganda" alt="propaganda aplicativo icart">
+        <img src="img/propaganda_app.png" id="img-propaganda" alt="propaganda aplicativo icart">
     </div>
     <div id="propaganda">
         <p id="texto-propaganda-v">
@@ -20,7 +22,7 @@
 <br>
 <div id="cont-compra">
     <div class="cont-planos" style="padding-left: 200px;">
-        <div class="plano">
+        <div class="plano" style="padding-top: 90px;">
             <p class="tamanho-estabelecimento">
                 Pequenos comércios
             </p>
@@ -39,30 +41,26 @@
             <br>
             <br>
             <button class="comprar">
-                <a href="" class="link-compra" style="text-decoration: none;">
-                    <p class="bto-comprar">COMPRE AGORA</p>
-                </a>
+                @if (Context.Session.GetString("user") == null)
+                {
+                    <a href="~/Estabelecimento/Cadastro_estabelecimento" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
+                else
+                {
+                    <a href="~/Usuario/Assinatura" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
             </button>
             <br>
             <br>
             <br>
-            <div class="cont-desc">
-                <div class="cont-img-check">
-                    <img src="~/img/check.png" id="img-check" alt="descricao">
-                </div>
-                <div class="descricao">
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
     <div class="cont-planos">
-        <div class="plano">
+        <div class="plano" style="padding-top: 90px;">
             <p class="tamanho-estabelecimento">
                 Grandes comércios
             </p>
@@ -81,30 +79,26 @@
             <br>
             <br>
             <button class="comprar">
-                <a href="" class="link-compra" style="text-decoration: none;">
-                    <p class="bto-comprar">COMPRE AGORA</p>
-                </a>
+                @if (Context.Session.GetString("user") == null)
+                {
+                    <a href="~/Estabelecimento/Cadastro_estabelecimento" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
+                else
+                {
+                    <a href="~/Usuario/Assinatura" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
             </button>
             <br>
             <br>
             <br>
-            <div class="cont-desc">
-                <div class="cont-img-check">
-                    <img src="~/img/check.png" id="img-check" alt="descricao">
-                </div>
-                <div class="descricao">
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
     <div class="cont-planos" style="padding-right: 200px;">
-        <div class="plano">
+        <div class="plano" style="padding-top: 90px;">
             <p class="tamanho-estabelecimento">
                 Franquias
             </p>
@@ -123,33 +117,29 @@
             <br>
             <br>
             <button class="comprar">
-                <a href="" class="link-compra" style="text-decoration: none;">
-                    <p class="bto-comprar">COMPRE AGORA</p>
-                </a>
+                @if (Context.Session.GetString("user") == null)
+                {
+                    <a href="~/Estabelecimento/Cadastro_estabelecimento" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
+                else
+                {
+                    <a href="~/Usuario/Assinatura" class="link-compra" style="text-decoration: none;">
+                        <p class="bto-comprar">COMPRE AGORA</p>
+                    </a>
+                }
             </button>
             <br>
             <br>
             <br>
-            <div class="cont-desc">
-                <div class="cont-img-check">
-                    <img src="~/img/check.png" id="img-check" alt="descricao">
-                </div>
-                <div class="descricao">
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                    <p class="texto-descricao">
-                        xxxxxxxxxxxxxxx
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 <br>
 <br>
 <div id="garantias">
-    <img src="~/img/img-garantias.png" alt="garantias">
+    <img src="img/img-garantias.png" alt="garantias">
 </div>
 <br>
 <br>

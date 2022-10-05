@@ -6,69 +6,11 @@ main {
     margin-top: 180px;
     align-items: flex-start;
 }
- 
-div#lista {
-    width: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 30px;
-    border: solid 1px black;
-}
-
-div.item {
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 35px;
-    margin-bottom: 20px;
-}
-
-div.img {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div.img img {
-    width: 30%;
-    height: 40px;
-}
-
-div.informacoes {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-div.informacoes p {
-    font-size: 25px;
-    font-weight: bold;
-}
-
-div.informacoes p:last-child {
-    font-size: 20px;
-    font-weight: 0;
-}
-
-div#lista hr, hr:last-child{
-    width: 85%;
-    color: black;
-    height: 2px;
-}
-
-div#lista hr:last-child {
-    margin-bottom: 35px;
-}
 
 div#container-cadastro {
     width: 35%;
     display: flex;
-    margin-top: 130px;
+    margin-left: 80px;
 }
 
 div#cadastro {
@@ -90,13 +32,13 @@ form {
     background-color: #A5CF20;
 }
 
-form p {
-    font-size: 35px;
-    color: white;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
+    form p {
+        font-size: 35px;
+        color: white;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
 
 input.preenchimento {
     width: 70%;

@@ -8,7 +8,7 @@ namespace icart_be.Models
 {
     public class Venda
     {
-        private string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
+        private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
         private string num_compra, cpf_cliente, cod_estabel, data_compra, preco_total;
 
         public string Num_compra { get => num_compra; set => num_compra = value; }
@@ -60,7 +60,7 @@ namespace icart_be.Models
             }
         }
 
-        public string Contar_vendas()
+        public static string Contar_vendas()
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();

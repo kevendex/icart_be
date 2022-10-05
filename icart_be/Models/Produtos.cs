@@ -18,6 +18,8 @@ namespace icart_be.Models
         public string Codigo_barras { get => codigo_barras; set => codigo_barras = value; }
         public string Preco_produto { get => preco_produto; set => preco_produto = value; }
         public string Tipo_produto { get => tipo_produto; set => tipo_produto = value; }
+        public int Estoque { get => estoque; set => estoque = value; }
+        public byte[] Imagem { get => imagem; set => imagem = value; }
 
         public Produtos(string codigo, string nome, string codigo_barras, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
         {
@@ -26,8 +28,8 @@ namespace icart_be.Models
             this.codigo_barras = codigo_barras;
             this.preco_produto = preco_produto;
             this.tipo_produto = tipo_produto;
-            this.estoque = estoque;
-            this.imagem = imagem;
+            this.Estoque = estoque;
+            this.Imagem = imagem;
         }
 
         public string Cadastrar_produto()
@@ -46,8 +48,8 @@ namespace icart_be.Models
                 comando.Parameters.AddWithValue("@codigo_barras", codigo_barras);
                 comando.Parameters.AddWithValue("@preco", preco_produto);
                 comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
-                comando.Parameters.AddWithValue("@estoque", estoque);
-                comando.Parameters.AddWithValue("@imagem", imagem);
+                comando.Parameters.AddWithValue("@estoque", Estoque);
+                comando.Parameters.AddWithValue("@imagem", Imagem);
                 con.Open();
                 comando.ExecuteNonQuery();
 
@@ -131,7 +133,7 @@ namespace icart_be.Models
             {
                 comando.Connection = con;
                 comando.CommandText = "UPDATE produtos SET estoque = @estoque WHERE codProduto = @codigo";
-                comando.Parameters.AddWithValue("@estoque", estoque);
+                comando.Parameters.AddWithValue("@estoque", Estoque);
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 con.Open();
                 comando.ExecuteNonQuery();

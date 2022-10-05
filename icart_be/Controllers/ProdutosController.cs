@@ -40,11 +40,12 @@ namespace icart_be.Controllers
             return RedirectToAction("Cadastro_produto");
         }
 
-        public IActionResult Listar()
+        public IActionResult Infos()
         {
             if (HttpContext.Session.GetString("user") != null)
-            {
-                    return View(Produtos.Listar());
+            { 
+                TempData["vendas"] = Venda.Contar_vendas();
+                return View(Produtos.Listar());
             }
             return RedirectToAction("Index", "Home");
         }

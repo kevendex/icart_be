@@ -125,5 +125,10 @@ namespace icart_be.Controllers
 
             return RedirectToAction("Usuario", "Perfil");
         }
+
+        public IActionResult Perfil()
+        {
+            return View();
+        }
     }
 }

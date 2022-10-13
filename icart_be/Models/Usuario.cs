@@ -51,7 +51,7 @@ namespace icart_be.Models
             {
                 con.Open();
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO usuarios VALUES(@cpf_cliente, @email_cliente, @cep_cliente, @senha, @tipo_cliente, 
+                comando.CommandText = "INSERT INTO usuarios VALUES(@cpf_cliente, @email_cliente, @cep_cliente, @senha, @tipo_cliente," 
                     + "@nome_cliente, @telefone_cliente, @num_endereco_cliente, @municipio_cliente, @bairro_cliente, @complemento_cliente)";
                 comando.Parameters.AddWithValue("@cpf_cliente", cpf);
                 comando.Parameters.AddWithValue("@email_cliente", email);

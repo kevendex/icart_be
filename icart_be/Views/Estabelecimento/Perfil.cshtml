@@ -1,4 +1,10 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+@{
+    icart_be.Models.Estabelecimento e = JsonConvert.DeserializeObject<icart_be.Models.Estabelecimento>
+        (Context.Session.GetString("user").ToString());
+}
+@{
     ViewData["Title"] = "Perfil";
 }
 
@@ -21,32 +27,32 @@
 <main>
     <div id="container-logo">
         <div id="logo">
-            <p></p>
+            <p> @e. </p>
         </div>
     </div>
     <div class="dados">
         <p>Nome da empresa:</p>
-        <p>lore</p>
+        <p>@e.Nome_empresarial</p>
     </div>
     <div class="dados">
         <p>CNPJ:</p>
-        <p>lore</p>
+        <p>@e.Cnpj</p>
     </div>
     <div class="dados">
         <p>CEP:</p>
-        <p>lore</p>
+        <p>@e.Cep</p>
     </div>
     <div class="dados">
         <p>Plano:</p>
-        <p>lore</p>
+        <p>@e.Nome_empresarial</p>
     </div>
     <div class="dados">
         <p>Telefone:</p>
-        <p>lore</p>
+        <p>@e.Telefone</p>
     </div>
     <div class="dados">
         <p>Email:</p>
-        <p>lore</p>
+        <p>@e.Email</p>
     </div>
     <div class="container-button">
         <a href="">

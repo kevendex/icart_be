@@ -21,13 +21,20 @@
     <div id="lista">
         @foreach (icart_be.Models.Produtos p in Model)
         {
+            string formato = "data:image/jpeg;base64," + Convert.ToBase64String(p.Imagem);
+
             <div class="item">
                 <div class="img">
-                    <img src="" alt="">
+                    <img src="@formato" alt="imagem do produto">
                 </div>
                 <div class="informacoes">
                     <p>@p.Nome </p><br>
                     <p>qtd. @p.Estoque </p>
+                </div>
+                <div class="informacoes">
+                    <p>@Html.ActionLink("Editar", "Alterar", new { cod = p.Codigo })</p>
+                    <br>
+                    <p>@Html.ActionLink("Deletar", "Excluir", new { cod = p.Codigo })</p>
                 </div>
             </div>
             <hr>

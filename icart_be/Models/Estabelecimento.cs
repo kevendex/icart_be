@@ -55,8 +55,7 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO estabelecimento VALUE(@codigo, @bairro, @tamanho, @cep, @uf, @email, " +
-                    "@nomeFantasia, @telefone, @numEndereco, @municipio, @logradouro, complemento, cnpj, senha)";
+                comando.CommandText = "INSERT INTO estabelecimento VALUES(@codigo, @bairro, @tamanho, @cep, @uf, @email, @nomeFantasia, @nomeEmpresarial, @telefone, @numEndereco, @municipio, @logradouro, @complemento, @cnpj, @senha)";
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 comando.Parameters.AddWithValue("@bairro", bairro);
                 comando.Parameters.AddWithValue("@tamanho", tamanho);
@@ -64,6 +63,7 @@ namespace icart_be.Models
                 comando.Parameters.AddWithValue("@uf", uf);
                 comando.Parameters.AddWithValue("@email", email);
                 comando.Parameters.AddWithValue("@nomeFantasia", nome_fantasia);
+                comando.Parameters.AddWithValue("@nomeEmpresarial", nome_empresarial);
                 comando.Parameters.AddWithValue("@telefone", telefone);
                 comando.Parameters.AddWithValue("@numEndereco", num_endereco);
                 comando.Parameters.AddWithValue("@municipio", municipio);
@@ -94,7 +94,7 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "SELECT cnpj, senha FROM estabelecimento WHERE cnpj = @cnpj and senha = @senha";
+                comando.CommandText = "SELECT cnpj_estabel, senha FROM estabelecimento WHERE cnpj_estabel = @cnpj and senha = @senha";
                 comando.Parameters.AddWithValue("@cnpj", cnpj);
                 comando.Parameters.AddWithValue("@senha", senha);
                 con.Open();

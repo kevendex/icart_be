@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -14,17 +17,28 @@
 </head>
 <body>
     <header>
-        <a href="~/Usuario/Login">
+        <a href="~/Home/Index">
             <div>
                 <img src="~/img/logo.png" id="img-header" alt="logo">
             </div>
         </a>
         <div id="espaco"></div>
-        <a href="~/Usuario/Perfil">
-            <div style="padding-top: 5px;">
-                <img src="~/img/perfil.svg" id="img-header" alt="perfil">
-            </div>
-        </a>
+        @if (Context.Session.GetString("user") == null)
+        {
+            <a href="~/Estabelecimento/Cadastro_estabelecimento">
+                <div style="padding-top: 5px;">
+                    <img src="~/img/perfil.svg" id="img-header" alt="perfil">
+                </div>
+            </a>
+        }
+        else
+        {
+            <a href="~/Estabelecimento/Perfil">
+                <div style="padding-top: 5px;">
+                    <img src="~/img/perfil.svg" id="img-header" alt="perfil">
+                </div>
+            </a>
+        }
     </header>
     @RenderBody()
     <footer>

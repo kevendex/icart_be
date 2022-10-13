@@ -60,7 +60,7 @@ namespace icart_be.Models
             }
         }
 
-        public static string Contar_vendas()
+        public static string Contar_vendas(string cod_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();

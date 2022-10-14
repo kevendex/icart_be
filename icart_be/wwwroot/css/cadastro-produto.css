@@ -50,7 +50,7 @@ input.preenchimento {
     margin-bottom: 20px;
 }
 
-form input:last-child {
+input[type=submit] {
     width: 40%;
     height: 45px;
     margin-top: 15px;

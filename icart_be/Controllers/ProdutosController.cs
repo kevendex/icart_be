@@ -23,7 +23,7 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastro_produto(string cod_produto, string nome_produto, string cod_barras, string preco_produto, string tipo_produto, int estoque)
+        public IActionResult Cadastro_produto(string cod_produto, string cod_estabel, string nome_produto, string cod_barras, string preco_produto, string tipo_produto, int estoque)
         {
             IFormFile arquivo = Request.Form.Files[0];
             string tipoArquivo = arquivo.ContentType;
@@ -34,7 +34,10 @@ namespace icart_be.Controllers
                 MemoryStream s = new MemoryStream();
                 arquivo.CopyToAsync(s);
                 byte[] imagem = s.ToArray();
-                Produtos p = new Produtos(cod_produto, nome_produto, cod_barras, preco_produto, tipo_produto, estoque, imagem);
+                Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+        (HttpContext.Session.GetString("user").ToString());
+                e.Codigo = cod_estabel;
+                Produtos p = new Produtos(cod_produto, cod_estabel, nome_produto, cod_barras, preco_produto, tipo_produto, estoque, imagem);
                 p.Cadastrar_produto();
             }
             return RedirectToAction("Cadastro_produto");
@@ -42,6 +45,10 @@ namespace icart_be.Controllers
 
         public IActionResult Infos(string cod_estabel)
         {
+            Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+        (HttpContext.Session.GetString("user").ToString());
+            cod_estabel = e.Codigo;
+
             if (HttpContext.Session.GetString("user") != null)
             { 
                 TempData["vendas"] = Venda.Contar_vendas(cod_estabel);
@@ -75,9 +82,14 @@ namespace icart_be.Controllers
         [HttpPost]
         public IActionResult Alterar(int estoque, string cod_produto)
         {
-            Produtos p = new Produtos(cod_produto, null, null, null, null, estoque, null);
+            Produtos p = new Produtos(cod_produto, null, null, null, null, null, estoque, null);
             TempData["mensagem"] = p.Alterar();
             return RedirectToAction("Listar");
+        }
+
+        public IActionResult Historico()
+        {
+            return View();
         }
     }
 }

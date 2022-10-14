@@ -9,7 +9,7 @@ namespace icart_be.Models
     public class Produtos
     {
         private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
-        private string codigo, nome, codigo_barras, preco_produto, tipo_produto;
+        private string codigo, cod_estabel, nome, codigo_barras, preco_produto, tipo_produto;
         private int estoque;
         private byte[] imagem;
 
@@ -20,42 +20,44 @@ namespace icart_be.Models
         public string Tipo_produto { get => tipo_produto; set => tipo_produto = value; }
         public int Estoque { get => estoque; set => estoque = value; }
         public byte[] Imagem { get => imagem; set => imagem = value; }
+        public string Cod_estabel { get => cod_estabel; set => cod_estabel = value; }
 
-        public Produtos(string codigo, string nome, string codigo_barras, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
+        public Produtos(string codigo, string cod_estabel, string nome, string codigo_barras, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
         {
             this.codigo = codigo;
+            this.Cod_estabel = cod_estabel;
             this.nome = nome;
             this.codigo_barras = codigo_barras;
             this.preco_produto = preco_produto;
             this.tipo_produto = tipo_produto;
             this.Estoque = estoque;
             this.Imagem = imagem;
+            
         }
 
         public string Cadastrar_produto()
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
-            Random r = new Random();
-            codigo = r.Next(1, 100000000).ToString();
 
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO produtos VALUES(@codigo_produto, @nome, @codigo_barras, @preco, @tipo_produto, @estoque, @imagem)";
+                comando.CommandText = "INSERT INTO produtos VALUES(@codigo_produto, @cod_estabel, @nome, @codigo_barras, @preco, @tipo_produto, @estoque, @imagem)";
                 comando.Parameters.AddWithValue("@codigo_produto", codigo);
+                comando.Parameters.AddWithValue("@cod_estabel", cod_estabel);
                 comando.Parameters.AddWithValue("@nome", nome);
                 comando.Parameters.AddWithValue("@codigo_barras", codigo_barras);
                 comando.Parameters.AddWithValue("@preco", preco_produto);
                 comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
-                comando.Parameters.AddWithValue("@estoque", Estoque);
+                comando.Parameters.AddWithValue("@estoque", estoque);
                 comando.Parameters.AddWithValue("@imagem", Imagem);
                 con.Open();
                 comando.ExecuteNonQuery();
 
                 return "Cadastrado com sucesso!";
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 return "Erro!";
             }
@@ -80,16 +82,16 @@ namespace icart_be.Models
 
                 while (ler.Read())
                 {
-                    byte[] imagem = (byte[])ler["imagem"];
-                    Produtos p = new Produtos(ler["codigo"].ToString(), ler["nome"].ToString(),
-                        ler["codigoBarras"].ToString(), ler["preco"].ToString(), 
-                        ler["tipoProduto"].ToString(), (int) ler["estoque"], imagem);
+                    byte[] imagem = (byte[])ler["img_produto"];
+                    Produtos p = new Produtos(ler["cod_produto"].ToString(), ler["cod_estabel"].ToString(), ler["nome_produto"].ToString(),
+                        ler["codigo_barras"].ToString(), ler["preco_produto"].ToString(), 
+                        ler["tipo_produto"].ToString(), (int) ler["estoque"], imagem);
                     produtos.Add(p);
                 }
 
                 return produtos;
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 return null;
             }
@@ -107,7 +109,7 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "DELETE FROM produtos WHERE codigo = @codigo";
+                comando.CommandText = "DELETE FROM produtos WHERE cod_produto = @codigo";
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 con.Open();
                 comando.ExecuteNonQuery();
@@ -132,8 +134,8 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "UPDATE produtos SET estoque = @estoque WHERE codProduto = @codigo";
-                comando.Parameters.AddWithValue("@estoque", Estoque);
+                comando.CommandText = "UPDATE produtos SET estoque = @estoque WHERE cod_produto = @codigo";
+                comando.Parameters.AddWithValue("@estoque", estoque);
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 con.Open();
                 comando.ExecuteNonQuery();

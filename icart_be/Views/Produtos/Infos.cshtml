@@ -5,6 +5,13 @@
 <head>
     <link rel="stylesheet" href="~/css/infos.css">
     <link rel="stylesheet" href="~/css/index.css">
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <br>
 <br>
@@ -52,7 +59,9 @@
 <br>
 <br>
 <div id="container-informacoes" style="display: flex; justify-content: center; align-items: center;">
-    <h2 id="texto-informacoes">@TempData["vendas"]</h2>
+    <h2 id="texto-informacoes">
+        @TempData["vendas"]
+    </h2>
 </div>
 <br>
 <br>

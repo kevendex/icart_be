@@ -17,14 +17,24 @@
 <br>
 <br>
 <div id="box-historico-vendas">
-    <h1 class="titulo-grande">
+    <h1 class="titulo-grande" style="display:flex; margin:auto; justify-content:center;">
         Últimas vendas
     </h1>
 </div>
-@foreach (icart_be.Models.Venda v in Model)
+@if (Model != null)
 {
-    <br>
-    <br>
-    <p class="texto-ultimas-vendas"> R$@v.Preco_total - @v.Cpf_cliente - @v.Data_compra </p>
+    @foreach (icart_be.Models.Venda v in Model)
+    {
+        <br>
+        <br>
+        <p class="texto-ultimas-vendas"> R$@v.Preco_total - @v.Cpf_cliente - @v.Data_compra </p>
+    }
 }
+else
+{
+    <br />
+    <br />
+    <p style="font-size:20px; font-weight:bold; display: flex; justify-content: center; margin: auto">Não há vendas</p>
+}
+
 

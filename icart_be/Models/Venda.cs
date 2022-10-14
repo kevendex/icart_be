@@ -69,10 +69,11 @@ namespace icart_be.Models
             {
                 comando.Connection = con;
                 comando.CommandText = "SELECT COUNT(cod_estabel) FROM compras WHERE cod_estabel = @cod_estabel";
-                comando.Parameters.AddWithValue("@cod_estabel", cod_estabel);
+                 comando.Parameters.AddWithValue("@cod_estabel", cod_estabel);
                 con.Open();
                 MySqlDataReader ler = comando.ExecuteReader();
-
+                ler.Read();
+                
                 return ler["COUNT(cod_estabel)"].ToString();
             }
             catch (Exception e)

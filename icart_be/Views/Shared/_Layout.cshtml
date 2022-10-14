@@ -25,7 +25,7 @@
         <div id="espaco"></div>
         @if (Context.Session.GetString("user") == null)
         {
-            <a href="~/Estabelecimento/Cadastro_estabelecimento">
+            <a href="~/Estabelecimento/Login">
                 <div style="padding-top: 5px;">
                     <img src="~/img/perfil.svg" id="img-header" alt="perfil">
                 </div>
@@ -33,7 +33,7 @@
         }
         else
         {
-            <a href="~/Estabelecimento/Perfil">
+            <a href="~/Estabelecimento/Gerenciador">
                 <div style="padding-top: 5px;">
                     <img src="~/img/perfil.svg" id="img-header" alt="perfil">
                 </div>

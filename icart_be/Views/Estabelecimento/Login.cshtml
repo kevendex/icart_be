@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<div id="main">
+<div id="main" style="flex-direction:column">
     <div id="container-login">
         <p id="login">Login</p>
         <br><br><br>
@@ -23,7 +23,7 @@
             <input type="password" name="Senha" placeholder="Senha:">
             <br><br><br>
             <p id="texto-cadastro-estabelecimento" style="padding-left: 2px;">
-                Não possui uma conta? <a href="" style="color: white;">cadastre seu estabelecimento</a>
+                Não possui uma conta? <a href="~/Estabelecimento/Cadastro_estabelecimento" style="color: white;">cadastre seu estabelecimento</a>
             </p>
             <br><br><br>
             <div id="container-button-entrar">
@@ -31,4 +31,8 @@
             </div>
         </form>
     </div>
+    <br />
+    <p style="display:flex; font-size:20px;">
+        @TempData["mensagem"]
+    </p>
 </div>

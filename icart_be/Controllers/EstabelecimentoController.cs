@@ -87,7 +87,7 @@ namespace icart_be.Controllers
                 }
                 else
                 {
-                    TempData["mensagem"] = "Erro!";
+                    TempData["mensagem"] = "Usuário ou senha inválidos!";
                     return RedirectToAction("Login");
                 }
             }
@@ -130,5 +130,11 @@ namespace icart_be.Controllers
         {
             return View();
         }
+
+        public IActionResult Gerenciador()
+        {
+            return View();
+        }
+
     }
 }

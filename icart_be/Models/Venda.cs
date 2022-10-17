@@ -26,7 +26,7 @@ namespace icart_be.Models
             this.preco_total = preco_total;
         }
 
-        public List<Venda> Historico_vendas()
+        public List<Venda> Historico_vendas(string cod_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -60,7 +60,7 @@ namespace icart_be.Models
             }
         }
 
-        public static string Contar_vendas(string cod_estabel)
+        public static string Contar_vendas(int cod_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();

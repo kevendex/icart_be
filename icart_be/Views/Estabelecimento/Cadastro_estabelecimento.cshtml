@@ -27,36 +27,36 @@
     <br><br><br><br><br>
     <form method="post" id="form-cadastro">
         <div id="container-linhas-lacunas">
-            <div id="container-lacuna"><input type="text" name="nome_empresarial" id="lacuna" placeholder="Nome Empresarial:"></div>
-            <div id="container-lacuna"><input type="text" name="nome_fantasia" id="lacuna" placeholder="Nome Fantasia:"></div>
-            <div id="container-lacuna"><input type="text" name="cnpj" id="lacuna" placeholder="CNPJ:"></div>
-            <div id="container-lacuna"><input type="text" name="cep" id="lacuna" placeholder="CEP:"></div>
+            <div id="container-lacuna"><input type="text" name="nome_empresarial" id="lacuna" placeholder="Nome Empresarial:" maxlength="45" required></div>
+            <div id="container-lacuna"><input type="text" name="nome_fantasia" id="lacuna" placeholder="Nome Fantasia:" maxlength="45" required></div>
+            <div id="container-lacuna"><input type="text" name="cnpj" id="lacuna" placeholder="CNPJ:" maxlength="14"required></div>
+            <div id="container-lacuna"><input type="text" name="cep" id="lacuna" placeholder="CEP:" maxlength="8"required></div>
         </div>
         <br>
         <br>
         <br>
         <div id="container-linhas-lacunas">
-            <div id="container-lacuna"><input type="number" name="num_endereco" id="lacuna" placeholder="Número:"></div>
-            <div id="container-lacuna"><input type="text" name="tamanho" id="lacuna" placeholder="Tamanho Estabelecimento:"></div>
-            <div id="container-lacuna"><input type="text" name="bairro" id="lacuna" placeholder="Bairro:"></div>
-            <div id="container-lacuna"><input type="text" name="municipio" id="lacuna" placeholder="Municipio:"></div>
+            <div id="container-lacuna"><input type="number" name="num_endereco" id="lacuna" placeholder="Número:" required></div>
+            <div id="container-lacuna"><input type="text" name="tamanho" id="lacuna" placeholder="Tamanho Estabelecimento:" required></div>
+            <div id="container-lacuna"><input type="text" name="bairro" id="lacuna" placeholder="Bairro:" required></div>
+            <div id="container-lacuna"><input type="text" name="municipio" id="lacuna" placeholder="Municipio:" required></div>
         </div>
         <br>
         <br>
         <br>
         <div id="container-linhas-lacunas">
-            <div id="container-lacuna"><input type="text" name="uf" id="lacuna" placeholder="UF:"></div>
-            <div id="container-lacuna"><input type="text" name="logradouro" id="lacuna" placeholder="Logradouro:"></div>
-            <div id="container-lacuna"><input type="text" name="email" id="lacuna" placeholder="E-mail:"></div>
-            <div id="container-lacuna"><input type="text" name="telefone" id="lacuna" placeholder="Telefone:"></div>
+            <div id="container-lacuna"><input type="text" name="uf" id="lacuna" placeholder="UF:" maxlength="2" required></div>
+            <div id="container-lacuna"><input type="text" name="logradouro" id="lacuna" placeholder="Logradouro:" required></div>
+            <div id="container-lacuna"><input type="text" name="email" id="lacuna" placeholder="E-mail:" required></div>
+            <div id="container-lacuna"><input type="text" name="telefone" id="lacuna" placeholder="Telefone:" required></div>
         </div>
         <br><br><br>
-        <div id="container-linhas-lacunas">
-            <div id="container-lacuna"><input type="text" name="complemento" id="lacuna" placeholder="Complemento:"></div>
-            <div id="container-lacuna"><input type="password" name="senha" id="lacuna" placeholder="Senha:"></div>
-            <div id="container-lacuna"><input type="number" name="codigo" id="lacuna" placeholder="Cod. do Estabel:"></div>
-            <div id="container-lacuna"></div>
-        </div>
+                <div id="container-linhas-lacunas">
+                    <div id="container-lacuna"><input type="text" name="complemento" id="lacuna" placeholder="Complemento:"></div>
+                    <div id="container-lacuna"><input type="password" name="senha" id="lacuna" placeholder="Senha:" maxlength="16" required></div>
+                    <div id="container-lacuna"></div>
+                    <div id="container-lacuna"></div>
+                </div>
         <br><br><br><br><br><br><br><br><br>
         <div id="container-button-cadastrar">
             <input type="submit" value="Cadastrar" id="bto-cadastrar">

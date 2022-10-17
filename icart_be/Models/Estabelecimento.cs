@@ -9,10 +9,11 @@ namespace icart_be.Models
     public class Estabelecimento
     {
         private string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
-        private string codigo, bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone,
+        private string bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone,
             num_endereco, municipio, logradouro, complemento, cnpj, senha;
+        private int codigo;
 
-        public Estabelecimento(string codigo, string bairro, string tamanho, string cep, string uf, string email, string nome_fantasia, string nome_empresarial, string telefone, string num_endereco, string municipio, string logradouro, string complemento, string cnpj, string senha)
+        public Estabelecimento(int codigo, string bairro, string tamanho, string cep, string uf, string email, string nome_fantasia, string nome_empresarial, string telefone, string num_endereco, string municipio, string logradouro, string complemento, string cnpj, string senha)
         {
             this.Codigo = codigo;
             this.Bairro = bairro;
@@ -31,7 +32,7 @@ namespace icart_be.Models
             this.Senha = senha;
         }
 
-        public string Codigo { get => codigo; set => codigo = value; }
+        public int Codigo { get => codigo; set => codigo = value; }
         public string Bairro { get => bairro; set => bairro = value; }
         public string Tamanho { get => tamanho; set => tamanho = value; }
         public string Cep { get => cep; set => cep = value; }
@@ -55,8 +56,7 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO estabelecimento VALUES(@codigo, @bairro, @tamanho, @cep, @uf, @email, @nomeFantasia, @nomeEmpresarial, @telefone, @numEndereco, @municipio, @logradouro, @complemento, @cnpj, @senha)";
-                comando.Parameters.AddWithValue("@codigo", codigo);
+                comando.CommandText = "INSERT INTO estabelecimento(bairro_estabel, tamanho_estabel, cep_estabel, uf_estabel, email_estabel, nome_fantasia, nome_empresarial, telefone_estabel, num_endereco_estabel, municipio_estabel, logradouro_estabel, complemento_endereco_estabel, cnpj_estabel, senha) VALUES(@bairro, @tamanho, @cep, @uf, @email, @nomeFantasia, @nomeEmpresarial, @telefone, @numEndereco, @municipio, @logradouro, @complemento, @cnpj, @senha)";
                 comando.Parameters.AddWithValue("@bairro", bairro);
                 comando.Parameters.AddWithValue("@tamanho", tamanho);
                 comando.Parameters.AddWithValue("@cep", cep);
@@ -76,9 +76,9 @@ namespace icart_be.Models
 
                 return "Cadastrado com sucesso!";
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                return "Erro!";
+                return "Erro ao cadastrar";
             }
             finally
             {

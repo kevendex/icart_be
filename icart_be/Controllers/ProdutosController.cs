@@ -23,7 +23,7 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastro_produto(string cod_produto, string cod_estabel, string nome_produto, string cod_barras, string preco_produto, string tipo_produto, int estoque)
+        public IActionResult Cadastro_produto(string nome_produto, string preco_produto, string tipo_produto, int estoque)
         {
             IFormFile arquivo = Request.Form.Files[0];
             string tipoArquivo = arquivo.ContentType;
@@ -36,34 +36,34 @@ namespace icart_be.Controllers
                 byte[] imagem = s.ToArray();
                 Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
         (HttpContext.Session.GetString("user").ToString());
-                e.Codigo = cod_estabel;
-                Produtos p = new Produtos(cod_produto, cod_estabel, nome_produto, cod_barras, preco_produto, tipo_produto, estoque, imagem);
-                p.Cadastrar_produto();
+                int cod_estabel = e.Codigo;
+                Produtos p = new Produtos(0, cod_estabel, nome_produto, preco_produto, tipo_produto, estoque, imagem);
+                p.Cadastrar_produto(cod_estabel);
             }
             return RedirectToAction("Cadastro_produto");
         }
 
-        public IActionResult Infos(string cod_estabel)
+        public IActionResult Infos()
         {
             Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
         (HttpContext.Session.GetString("user").ToString());
-            cod_estabel = e.Codigo;
+            int cod_estabel = e.Codigo;
 
             if (HttpContext.Session.GetString("user") != null)
             { 
                 TempData["vendas"] = Venda.Contar_vendas(cod_estabel);
-                return View(Produtos.Listar());
+                return View(Produtos.Listar(cod_estabel));
             }
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Excluir(string codigo)
+        public IActionResult Excluir(int cod)
         {
             if (HttpContext.Session.GetString("user") != null)
             {
-                TempData["mensagem"] = Produtos.Excluir_Produto(codigo);
+                TempData["mensagem"] = Produtos.Excluir_Produto(cod);
 
-                return RedirectToAction("Listar");
+                return RedirectToAction("Infos");
             }
 
             return RedirectToAction("Index", "Home");
@@ -80,10 +80,10 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(int estoque, string cod_produto)
+        public IActionResult Alterar(int estoque, int cod_produto)
         {
-            Produtos p = new Produtos(cod_produto, null, null, null, null, null, estoque, null);
-            TempData["mensagem"] = p.Alterar();
+            Produtos p = new Produtos(cod_produto, 0, null, null, null, estoque, null);
+            TempData["mensagem"] = p.Alterar(cod_produto);
             return RedirectToAction("Listar");
         }
 

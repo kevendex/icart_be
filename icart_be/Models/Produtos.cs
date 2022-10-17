@@ -9,33 +9,31 @@ namespace icart_be.Models
     public class Produtos
     {
         private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
-        private string codigo, cod_estabel, nome, codigo_barras, preco_produto, tipo_produto;
+        private string nome, preco_produto, tipo_produto;
+        private int codigo, cod_estabel;
         private int estoque;
         private byte[] imagem;
 
-        public string Codigo { get => codigo; set => codigo = value; }
+        public int Codigo { get => codigo; set => codigo = value; }
+        public int Cod_estabel { get => cod_estabel; set => cod_estabel = value; }
         public string Nome { get => nome; set => nome = value; }
-        public string Codigo_barras { get => codigo_barras; set => codigo_barras = value; }
         public string Preco_produto { get => preco_produto; set => preco_produto = value; }
         public string Tipo_produto { get => tipo_produto; set => tipo_produto = value; }
         public int Estoque { get => estoque; set => estoque = value; }
         public byte[] Imagem { get => imagem; set => imagem = value; }
-        public string Cod_estabel { get => cod_estabel; set => cod_estabel = value; }
 
-        public Produtos(string codigo, string cod_estabel, string nome, string codigo_barras, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
+        public Produtos(int codigo, int cod_estabel, string nome, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
         {
-            this.codigo = codigo;
+            this.Codigo = codigo;
             this.Cod_estabel = cod_estabel;
             this.nome = nome;
-            this.codigo_barras = codigo_barras;
             this.preco_produto = preco_produto;
             this.tipo_produto = tipo_produto;
             this.Estoque = estoque;
             this.Imagem = imagem;
-            
         }
 
-        public string Cadastrar_produto()
+        public string Cadastrar_produto(int cod_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -43,11 +41,9 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "INSERT INTO produtos VALUES(@codigo_produto, @cod_estabel, @nome, @codigo_barras, @preco, @tipo_produto, @estoque, @imagem)";
-                comando.Parameters.AddWithValue("@codigo_produto", codigo);
+                comando.CommandText = "INSERT INTO produtos(cod_estabel, nome_produto, preco_produto, tipo_produto, estoque, img_produto) VALUES(@cod_estabel, @nome, @preco, @tipo_produto, @estoque, @imagem)";
                 comando.Parameters.AddWithValue("@cod_estabel", cod_estabel);
                 comando.Parameters.AddWithValue("@nome", nome);
-                comando.Parameters.AddWithValue("@codigo_barras", codigo_barras);
                 comando.Parameters.AddWithValue("@preco", preco_produto);
                 comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
                 comando.Parameters.AddWithValue("@estoque", estoque);
@@ -59,7 +55,7 @@ namespace icart_be.Models
             }
             catch(Exception e)
             {
-                return "Erro!";
+                return "Erro ao cadastrar";
             }
             finally
             {
@@ -67,7 +63,7 @@ namespace icart_be.Models
             }
         }
 
-        public static List<Produtos> Listar()
+        public static List<Produtos> Listar(int cod_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -76,15 +72,15 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "SELECT * FROM produtos";
+                comando.CommandText = "SELECT * FROM produtos WHERE cod_estabel = @cod_estabel";
+                comando.Parameters.AddWithValue("@cod_estabel", cod_estabel);
                 con.Open();
                 MySqlDataReader ler = comando.ExecuteReader();
 
                 while (ler.Read())
                 {
                     byte[] imagem = (byte[])ler["img_produto"];
-                    Produtos p = new Produtos(ler["cod_produto"].ToString(), ler["cod_estabel"].ToString(), ler["nome_produto"].ToString(),
-                        ler["codigo_barras"].ToString(), ler["preco_produto"].ToString(), 
+                    Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), ler["preco_produto"].ToString(), 
                         ler["tipo_produto"].ToString(), (int) ler["estoque"], imagem);
                     produtos.Add(p);
                 }
@@ -101,7 +97,7 @@ namespace icart_be.Models
             }
         }
 
-        public static string Excluir_Produto(string codigo)
+        public static string Excluir_Produto(int codigo)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -118,7 +114,7 @@ namespace icart_be.Models
             }
             catch(Exception)
             {
-                return "Erro!";
+                return "Erro ao excluir";
             }
             finally
             {
@@ -126,7 +122,7 @@ namespace icart_be.Models
             }
         }
 
-        public string Alterar()
+        public string Alterar(int codigo)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();

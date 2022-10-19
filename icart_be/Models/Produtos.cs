@@ -47,7 +47,7 @@ namespace icart_be.Models
                 comando.Parameters.AddWithValue("@preco", preco_produto);
                 comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
                 comando.Parameters.AddWithValue("@estoque", estoque);
-                comando.Parameters.AddWithValue("@imagem", Imagem);
+                comando.Parameters.AddWithValue("@imagem", imagem);
                 con.Open();
                 comando.ExecuteNonQuery();
 
@@ -79,7 +79,7 @@ namespace icart_be.Models
 
                 while (ler.Read())
                 {
-                    byte[] imagem = (byte[])ler["img_produto"];
+                    byte[] imagem = (byte[]) ler["img_produto"];
                     Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), ler["preco_produto"].ToString(), 
                         ler["tipo_produto"].ToString(), (int) ler["estoque"], imagem);
                     produtos.Add(p);

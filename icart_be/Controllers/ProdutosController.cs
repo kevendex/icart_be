@@ -25,21 +25,30 @@ namespace icart_be.Controllers
         [HttpPost]
         public IActionResult Cadastro_produto(string nome_produto, string preco_produto, string tipo_produto, int estoque)
         {
-            IFormFile arquivo = Request.Form.Files[0];
-            string tipoArquivo = arquivo.ContentType;
-            if (tipoArquivo.Contains("png") ||
-                    tipoArquivo.Contains("jpeg"))
-            {//Gravar no banco
-             //converter a imagem em bytes
-                MemoryStream s = new MemoryStream();
-                arquivo.CopyToAsync(s);
-                byte[] imagem = s.ToArray();
-                Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
-        (HttpContext.Session.GetString("user").ToString());
-                int cod_estabel = e.Codigo;
-                Produtos p = new Produtos(0, cod_estabel, nome_produto, preco_produto, tipo_produto, estoque, imagem);
-                p.Cadastrar_produto(cod_estabel);
+            try
+            {
+                IFormFile arquivo = Request.Form.Files[0];
+                string tipoArquivo = arquivo.ContentType;
+                if (tipoArquivo.Contains("png") ||
+                        tipoArquivo.Contains("jpeg"))
+                {//Gravar no banco
+                 //converter a imagem em bytes
+                    MemoryStream s = new MemoryStream();
+                    arquivo.CopyTo(s);
+                    byte[] imagem = s.ToArray();
+                    Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+            (HttpContext.Session.GetString("user").ToString());
+                    int cod_estabel = e.Codigo;
+                    Produtos p = new Produtos(0, cod_estabel, nome_produto, preco_produto, tipo_produto, estoque, imagem);
+                    p.Cadastrar_produto(cod_estabel);
+                }
             }
+            catch (Exception)
+            {
+                TempData["mensagem"] = "Preencha todos os campos";
+                return RedirectToAction("Cadastro_produto");
+            }
+            
             return RedirectToAction("Cadastro_produto");
         }
 

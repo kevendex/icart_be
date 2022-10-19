@@ -34,13 +34,15 @@
             <input type="number" name="preco_produto" class="preenchimento" placeholder="Preço:">
             <input type="text" name="tipo_produto" class="preenchimento" placeholder="Tipo do produto:">
             <p>Imagem</p>
-            <input type="file" value="imagem" id="preenchimento" name="Imagem">
+            <input type="file" value="imagem" id="preenchimento" name="arquivo">
             <br>
             <input type="submit" value="Cadastrar" id="cadastrar">
         </form>
     </div>
-    
-    <p style="display:flex; font-size:20px;">
-        @TempData["mensagem"]
-    </p>
 </main>
+<br />
+<br />
+<br />
+<p style="display:flex; font-size:20px; justify-content:center; margin:auto; padding-right:50px">
+    @TempData["mensagem"]
+</p>

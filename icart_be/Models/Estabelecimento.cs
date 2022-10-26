@@ -146,5 +146,32 @@ namespace icart_be.Models
                 con.Close();
             }
         }
+
+        public string Assinar(int cod_estabel)
+        {
+            MySqlConnection con = new MySqlConnection(conexao);
+            MySqlCommand coman = new MySqlCommand();
+
+            try
+            {
+                coman.Connection = con;
+                coman.CommandText = "INSERT INTO assinatura VALUES(@cod_estabel, @data_assinatura, @fim_assinatura); ";
+                coman.Parameters.AddWithValue("@cod_estabel", cod_estabel);
+                coman.Parameters.AddWithValue("@data_assinatura", DateTime.Now);
+                coman.Parameters.AddWithValue("@fim_assinatura", DateTime.Now.AddMonths(1));
+                con.Open();
+                coman.ExecuteNonQuery();
+0
+                return "Compra finalizada!";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace icart_be.Controllers
         [HttpPost]
         public IActionResult Cadastro_estabelecimento(string bairro, string tamanho, string cep, string uf, string email, string nome_fantasia, string nome_empresarial, string telefone, string num_endereco, string municipio, string logradouro, string complemento, string cnpj, string senha)
         {
-            Estabelecimento e = new Estabelecimento(0, bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone, num_endereco, municipio, logradouro, complemento, cnpj, senha);
+            Estabelecimento e = new Estabelecimento(0, bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone, num_endereco, municipio, logradouro, complemento, cnpj, senha, null);
 
             try
             {
@@ -53,7 +53,7 @@ namespace icart_be.Controllers
             MySqlConnection con = new MySqlConnection("Server = ESN509VMYSQL; Database = carrinho_tcc; User id = aluno; Password = Senai1234");
             MySqlCommand coman = new MySqlCommand();
             string bairro = "", tamanho = "", cep = "", uf = "", email = "", nome_fantasia = "", nome_empresarial = "", telefone = "",
-            num_endereco = "", municipio = "", logradouro = "", complemento = "";
+            num_endereco = "", municipio = "", logradouro = "", complemento = "", tipo_estabel = "";
             int codigo = 0;
 
             try
@@ -78,9 +78,10 @@ namespace icart_be.Controllers
                     municipio = ler["municipio_estabel"].ToString();
                     logradouro = ler["logradouro_estabel"].ToString();
                     complemento = ler["cod_estabel"].ToString();
+                    tipo_estabel = ler["tipo_estabel"].ToString();
                 }
                 
-                Estabelecimento e = new Estabelecimento(codigo, bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone, num_endereco, municipio, logradouro, complemento, cnpj, senha);
+                Estabelecimento e = new Estabelecimento(codigo, bairro, tamanho, cep, uf, email, nome_fantasia, nome_empresarial, telefone, num_endereco, municipio, logradouro, complemento, cnpj, senha, tipo_estabel);
                 if (e.Logar_estabelecimento())
                 {
                     HttpContext.Session.SetString("user", JsonConvert.SerializeObject(e));
@@ -116,7 +117,7 @@ namespace icart_be.Controllers
         [HttpPost]
         public IActionResult Alterar_dados(string nome_fantasia, string email, string senha)
         {
-            Estabelecimento e = new Estabelecimento(0, null, null, null, null, email, nome_fantasia, null, null, null, null, null, null, null, senha);
+            Estabelecimento e = new Estabelecimento(0, null, null, null, null, email, nome_fantasia, null, null, null, null, null, null, null, senha, null);
             e.Alterar_dados();
             Usuario sessao = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("user").ToString());
             sessao.Nome = nome_fantasia;

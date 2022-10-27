@@ -195,7 +195,7 @@ namespace icart_be.Models
 
                 if (DateTime.Compare(DateTime.Now, d.Date) >= 0)
                 {
-                    coman.CommandText = "UPDATE estabelecimento SET tipo_estabel = @tipo_estabel where cod_estabel = @cod_estabel";
+                    coman.CommandText = "UPDATE estabelecimento SET tipo_estabel = @tipo_estabel WHERE cod_estabel = @cod_estabel";
                     coman.Parameters.AddWithValue("@tipo_estabel", tipo_estabel);
                     coman.Parameters.AddWithValue("@cod_estabel", cod_estabel);
                     con.Open();

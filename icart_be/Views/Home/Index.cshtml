@@ -1,9 +1,18 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿@model icart_be.Models.Estabelecimento
+@using Microsoft.AspNetCore.Http;
 @using Newtonsoft.Json;
 @{
     ViewData["Title"] = "Página inicial";
+    icart_be.Models.Estabelecimento e = null;
 }
-
+@if (Context.Session.GetString("user") == null)
+{
+}
+else
+{
+    e = JsonConvert.DeserializeObject<icart_be.Models.Estabelecimento>
+        (Context.Session.GetString("user").ToString());
+}
 <br>
 <div id="cont-propaganda">
     <div>
@@ -20,48 +29,75 @@
     </div>
 </div>
 <br>
-<div id="cont-compra">
-    <div class="cont-planos">
-        <div class="plano" style="padding-top: 90px;">
-            <p class="tamanho-estabelecimento">
-                Estabelecimentos
-            </p>
-            <br>
-            <br>
-            <p class="preco">
-                R$1600,00
-            </p>
-            <br>
-            <br>
-            <select name="licenca" id="licenca">
-                <option value="licenca-1-mes">Licença de 1 mês</option>
-                <option value="licenca-1-ano">Licença de 1 ano</option>
-            </select>
-            <br>
-            <br>
-            <br>
-            <button class="comprar">
-                @if (Context.Session.GetString("user") == null)
-                {
+@if (Context.Session.GetString("user") == null)
+{
+    <div id="cont-compra">
+        <div class="cont-planos">
+            <div class="plano" style="padding-top: 90px;">
+                <p class="tamanho-estabelecimento">
+                    Estabelecimentos
+                </p>
+                <br>
+                <br>
+                <p class="preco">
+                    R$1600,00
+                </p>
+                <br>
+                <br>
+                <select name="licenca" id="licenca">
+                    <option value="licenca-1-mes">Licença de 1 mês</option>
+                </select>
+                <br>
+                <br>
+                <br>
+                <button>
                     <a href="~/Estabelecimento/Cadastro_estabelecimento" class="link-compra" style="text-decoration: none;">
                         <p class="bto-comprar">COMPRE AGORA</p>
                     </a>
-                }
-                else
-                {
-                    <a href="~/Usuario/Assinatura" class="link-compra" style="text-decoration: none;">
-                        <p class="bto-comprar">COMPRE AGORA</p>
-                    </a>
-                }
-            </button>
-            <br>
-            <br>
-            <br>
+                </button>
+                <br>
+                <br>
+                <br>
+            </div>
         </div>
     </div>
-</div>
-<br>
-<br>
+}
+else
+{
+    if (e.Tipo_estabel.Equals("Não assinante"))
+    {
+        <div id="cont-compra">
+            <div class="cont-planos">
+                <div class="plano" style="padding-top: 90px;">
+                    <p class="tamanho-estabelecimento">
+                        Estabelecimentos
+                    </p>
+                    <br>
+                    <br>
+                    <p class="preco">
+                        R$1600,00
+                    </p>
+                    <br>
+                    <br>
+                    <select name="licenca" id="licenca">
+                        <option value="licenca-1-mes">Licença de 1 mês</option>
+                    </select>
+                    <br>
+                    <br>
+                    <br>
+                    <button class="bto-comprar">
+                        <a href="~/Usuario/Assinatura" class="link-compra" style="text-decoration: none;">
+                            <p class="bto-comprar">COMPRE AGORA</p>
+                        </a>
+                    </button>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    }
+}
 <div id="garantias">
     <img src="~/img/img-garantias.png" alt="garantias">
 </div>

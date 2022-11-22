@@ -9,8 +9,11 @@
 #container-cadastro {
    width: 100%;
    height: 692px;
-   display: inline-block;
+   display: flex;
+   flex-direction: column;
    padding-left: 100px;
+   justify-content: center;
+   align-items: center;
 }
 
 #container-linhas-lacunas {
@@ -37,16 +40,6 @@
    width: 440px;
    height: 35px;
 }
-
-#container-button-continuar {
-   width: 100%;
-   height: 70px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding-right: 140px;
-}
-
 #bto-cadastrar {
    width: 380px;
    height: 100px;
@@ -55,4 +48,7 @@
    background-color: black;
    color: white;
    cursor: pointer;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }

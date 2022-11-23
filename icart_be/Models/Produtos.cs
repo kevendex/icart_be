@@ -9,20 +9,21 @@ namespace icart_be.Models
     public class Produtos
     {
         private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
-        private string nome, preco_produto, tipo_produto;
+        private string nome, tipo_produto;
         private int codigo, cod_estabel;
+        private double preco_produto;
         private int estoque;
         private byte[] imagem;
 
         public int Codigo { get => codigo; set => codigo = value; }
         public int Cod_estabel { get => cod_estabel; set => cod_estabel = value; }
         public string Nome { get => nome; set => nome = value; }
-        public string Preco_produto { get => preco_produto; set => preco_produto = value; }
+        public double Preco_produto { get => preco_produto; set => preco_produto = value; }
         public string Tipo_produto { get => tipo_produto; set => tipo_produto = value; }
         public int Estoque { get => estoque; set => estoque = value; }
         public byte[] Imagem { get => imagem; set => imagem = value; }
 
-        public Produtos(int codigo, int cod_estabel, string nome, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
+        public Produtos(int codigo, int cod_estabel, string nome, double preco_produto, string tipo_produto, int estoque, byte[] imagem)
         {
             this.Codigo = codigo;
             this.Cod_estabel = cod_estabel;
@@ -80,7 +81,7 @@ namespace icart_be.Models
                 while (ler.Read())
                 {
                     byte[] imagem = (byte[]) ler["img_produto"];
-                    Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), ler["preco_produto"].ToString(), 
+                    Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), (double) ler["preco_produto"], 
                         ler["tipo_produto"].ToString(), (int) ler["estoque"], imagem);
                     produtos.Add(p);
                 }
@@ -130,8 +131,11 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "UPDATE produtos SET estoque = @estoque WHERE cod_produto = @codigo";
+                comando.CommandText = "UPDATE produtos SET estoque = @estoque, nome_produto = @nome_produto, preco_produto = @preco_produto, tipo_produto = @tipo_produto,  WHERE cod_produto = @codigo";
                 comando.Parameters.AddWithValue("@estoque", estoque);
+                comando.Parameters.AddWithValue("@nome_produto", nome);
+                comando.Parameters.AddWithValue("@preco_produto", preco_produto);
+                comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 con.Open();
                 comando.ExecuteNonQuery();

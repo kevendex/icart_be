@@ -7,16 +7,16 @@
     icart_be.Models.Estabelecimento e = JsonConvert.DeserializeObject<icart_be.Models.Estabelecimento>
         (Context.Session.GetString("user").ToString());
 }
-<style>
-    footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-    }
-</style>
 <head>
     <link rel="stylesheet" href="~/css/gerenciador.css">
     <link rel="stylesheet" href="~/css/index.css">
+    <style>
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 </head>
 @if (e.Tipo_estabel.Equals("Não assinante"))
 {

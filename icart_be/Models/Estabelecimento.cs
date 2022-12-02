@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace icart_be.Models
@@ -50,6 +52,25 @@ namespace icart_be.Models
         public string Senha { get => senha; set => senha = value; }
         public string Tipo_estabel { get => tipo_estabel; set => tipo_estabel = value; }
 
+        private string criptografar(string senha)
+        {
+            //Criar um objeto da classe SHA256
+            SHA256 sha256 = SHA256.Create();
+
+            //Converte a senha para um vetor de bytes
+            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
+
+            //Converter o vetor de bytes para String
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+
+            //Retorna a senha em String
+            return builder.ToString();
+        }
+
         public string Cadastrar_estabelecimento()
         {
             MySqlConnection con = new MySqlConnection(conexao);
@@ -60,20 +81,20 @@ namespace icart_be.Models
             {
                 comando.Connection = con;
                 comando.CommandText = "INSERT INTO estabelecimento(bairro_estabel, tamanho_estabel, cep_estabel, uf_estabel, email_estabel, nome_fantasia, nome_empresarial, telefone_estabel, num_endereco_estabel, municipio_estabel, logradouro_estabel, complemento_endereco_estabel, cnpj_estabel, senha, tipo_estabel) VALUES(@bairro, @tamanho, @cep, @uf, @email, @nomeFantasia, @nomeEmpresarial, @telefone, @numEndereco, @municipio, @logradouro, @complemento, @cnpj, @senha, @tipo_estabel)";
-                comando.Parameters.AddWithValue("@bairro", Bairro);
-                comando.Parameters.AddWithValue("@tamanho", Tamanho);
-                comando.Parameters.AddWithValue("@cep", Cep);
-                comando.Parameters.AddWithValue("@uf", Uf);
-                comando.Parameters.AddWithValue("@email", Email);
-                comando.Parameters.AddWithValue("@nomeFantasia", Nome_fantasia);
-                comando.Parameters.AddWithValue("@nomeEmpresarial", Nome_empresarial);
-                comando.Parameters.AddWithValue("@telefone", Telefone);
-                comando.Parameters.AddWithValue("@numEndereco", Num_endereco);
-                comando.Parameters.AddWithValue("@municipio", Municipio);
-                comando.Parameters.AddWithValue("@logradouro", Logradouro);
-                comando.Parameters.AddWithValue("@complemento", Complemento);
-                comando.Parameters.AddWithValue("@cnpj", Cnpj);
-                comando.Parameters.AddWithValue("@senha", Senha);
+                comando.Parameters.AddWithValue("@bairro", bairro);
+                comando.Parameters.AddWithValue("@tamanho", tamanho);
+                comando.Parameters.AddWithValue("@cep", cep);
+                comando.Parameters.AddWithValue("@uf", uf);
+                comando.Parameters.AddWithValue("@email", email);
+                comando.Parameters.AddWithValue("@nomeFantasia", nome_fantasia);
+                comando.Parameters.AddWithValue("@nomeEmpresarial", nome_empresarial);
+                comando.Parameters.AddWithValue("@telefone", telefone);
+                comando.Parameters.AddWithValue("@numEndereco", num_endereco);
+                comando.Parameters.AddWithValue("@municipio", municipio);
+                comando.Parameters.AddWithValue("@logradouro", logradouro);
+                comando.Parameters.AddWithValue("@complemento", complemento);
+                comando.Parameters.AddWithValue("@cnpj", cnpj);
+                comando.Parameters.AddWithValue("@senha", criptografar(senha));
                 comando.Parameters.AddWithValue("@tipo_estabel", tipo_estabel);
                 con.Open();
                 comando.ExecuteNonQuery();
@@ -99,8 +120,8 @@ namespace icart_be.Models
             {
                 comando.Connection = con;
                 comando.CommandText = "SELECT cnpj_estabel, senha FROM estabelecimento WHERE cnpj_estabel = @cnpj and senha = @senha";
-                comando.Parameters.AddWithValue("@cnpj", Cnpj);
-                comando.Parameters.AddWithValue("@senha", Senha);
+                comando.Parameters.AddWithValue("@cnpj", cnpj);
+                comando.Parameters.AddWithValue("@senha", criptografar(senha));
                 con.Open();
                 MySqlDataReader ler = comando.ExecuteReader();
                 ler.Read();
@@ -133,9 +154,9 @@ namespace icart_be.Models
             {
                 coman.Connection = con;
                 coman.CommandText = "UPDATE estabelecimento SET nome_fantasia = @nome_fantasia , senha = @senha , email_estabel = @email_estabel WHERE cnpj_estabel = @cnpj_estabel";
-                coman.Parameters.AddWithValue("@nome_fantasia", Nome_fantasia);
-                coman.Parameters.AddWithValue("@senha", Senha);
-                coman.Parameters.AddWithValue("@email_estabel", Email);
+                coman.Parameters.AddWithValue("@nome_fantasia", nome_fantasia);
+                coman.Parameters.AddWithValue("@senha", senha);
+                coman.Parameters.AddWithValue("@email_estabel", email);
                 con.Open();
                 coman.ExecuteNonQuery();
 

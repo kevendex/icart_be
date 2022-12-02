@@ -138,5 +138,14 @@ namespace icart_be.Controllers
             return View();
         }
 
+        public IActionResult Assinatura(int codigo)
+        {
+            Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+        (HttpContext.Session.GetString("user").ToString());
+            codigo = e.Codigo;
+            e.Assinar(codigo);
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

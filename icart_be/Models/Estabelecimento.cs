@@ -52,30 +52,13 @@ namespace icart_be.Models
         public string Senha { get => senha; set => senha = value; }
         public string Tipo_estabel { get => tipo_estabel; set => tipo_estabel = value; }
 
-        private string criptografar(string senha)
-        {
-            //Criar um objeto da classe SHA256
-            SHA256 sha256 = SHA256.Create();
-
-            //Converte a senha para um vetor de bytes
-            byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
-
-            //Converter o vetor de bytes para String
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                builder.Append(bytes[i].ToString("x2"));
-            }
-
-            //Retorna a senha em String
-            return builder.ToString();
-        }
+        
 
         public string Cadastrar_estabelecimento()
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
-            tipo_estabel = "Não assinante";
+            tipo_estabel = "Assinante";
 
             try
             {
@@ -94,8 +77,8 @@ namespace icart_be.Models
                 comando.Parameters.AddWithValue("@logradouro", logradouro);
                 comando.Parameters.AddWithValue("@complemento", complemento);
                 comando.Parameters.AddWithValue("@cnpj", cnpj);
-                comando.Parameters.AddWithValue("@senha", criptografar(senha));
-                comando.Parameters.AddWithValue("@tipo_estabel", tipo_estabel);
+                comando.Parameters.AddWithValue("@senha", senha);
+                comando.Parameters.AddWithValue("@tipo_estabel", Tipo_estabel);
                 con.Open();
                 comando.ExecuteNonQuery();
 
@@ -121,7 +104,7 @@ namespace icart_be.Models
                 comando.Connection = con;
                 comando.CommandText = "SELECT cnpj_estabel, senha FROM estabelecimento WHERE cnpj_estabel = @cnpj and senha = @senha";
                 comando.Parameters.AddWithValue("@cnpj", cnpj);
-                comando.Parameters.AddWithValue("@senha", criptografar(senha));
+                comando.Parameters.AddWithValue("@senha", senha);
                 con.Open();
                 MySqlDataReader ler = comando.ExecuteReader();
                 ler.Read();
@@ -171,71 +154,5 @@ namespace icart_be.Models
                 con.Close();
             }
         }
-
-        public string Assinar(int cod_estabel)
-        {
-            MySqlConnection con = new MySqlConnection(conexao);
-            MySqlCommand coman = new MySqlCommand();
-
-            try
-            {
-                coman.Connection = con;
-                coman.CommandText = "INSERT INTO assinatura VALUES(@cod_estabel, @data_assinatura, @fim_assinatura)";
-                coman.Parameters.AddWithValue("@cod_estabel", cod_estabel);
-                coman.Parameters.AddWithValue("@data_assinatura", DateTime.Now);
-                coman.Parameters.AddWithValue("@fim_assinatura", DateTime.Now.AddMonths(1));
-                con.Open();
-                coman.ExecuteNonQuery();
-
-                return "Compra finalizada!";
-            }
-            catch (Exception e)
-            {
-                return e.Message;
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-
-        public bool Fim_assinatura(int cod_estabel)
-        {
-            MySqlConnection con = new MySqlConnection(conexao);
-            MySqlCommand coman = new MySqlCommand();
-            tipo_estabel = "Assinante";
-            DateTime d = new DateTime();
-
-            try
-            {
-                coman.Connection = con;
-                coman.CommandText = "SELECT fim_assinatura INTO assinatura WHERE cod_estabel = @cod_estabel AND fim_assinatura = @fim_assinatura";
-                coman.Parameters.AddWithValue("@cod_estabel", cod_estabel);
-                coman.Parameters.AddWithValue("@data_assinatura", DateTime.Now);
-                coman.Parameters.AddWithValue("@fim_assinatura", d.Date);
-
-                if (DateTime.Compare(DateTime.Now, d.Date) >= 0)
-                {
-                    coman.CommandText = "UPDATE estabelecimento SET tipo_estabel = @tipo_estabel WHERE cod_estabel = @cod_estabel";
-                    coman.Parameters.AddWithValue("@tipo_estabel", tipo_estabel);
-                    coman.Parameters.AddWithValue("@cod_estabel", cod_estabel);
-                    con.Open();
-                    coman.ExecuteNonQuery();
-
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
-
     }
 }

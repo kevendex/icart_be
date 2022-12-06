@@ -24,7 +24,7 @@
    align-items: center;
 }
 
-#lacuna, #cep, #bairro, #logradouro, #uf, #municipio {
+#lacuna, #cep, #bairro, #logradouro, #uf, #localidade {
    background-color: white;
    border: 2px solid gray;
    width: 380px;

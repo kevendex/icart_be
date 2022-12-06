@@ -23,7 +23,7 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastro_produto(string nome_produto, int preco_produto, string tipo_produto, int estoque)
+        public IActionResult Cadastro_produto(string nome_produto, string preco_produto, string tipo_produto, int estoque)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(int estoque, string nome, double preco, string tipo_produto, int cod_produto)
+        public IActionResult Alterar(int estoque, string nome, string preco, string tipo_produto, int cod_produto)
         {
             Produtos p = new Produtos(cod_produto, 0, nome, preco, tipo_produto, estoque, null);
             TempData["mensagem"] = p.Alterar(cod_produto);

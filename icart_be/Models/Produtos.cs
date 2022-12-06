@@ -9,21 +9,20 @@ namespace icart_be.Models
     public class Produtos
     {
         private static string conexao = "Server=ESN509VMYSQL;Database=carrinho_tcc;User id=aluno;Password=Senai1234";
-        private string nome, tipo_produto;
+        private string nome, tipo_produto, preco_produto;
         private int codigo, cod_estabel;
-        private double preco_produto;
         private int estoque;
         private byte[] imagem;
 
         public int Codigo { get => codigo; set => codigo = value; }
         public int Cod_estabel { get => cod_estabel; set => cod_estabel = value; }
         public string Nome { get => nome; set => nome = value; }
-        public double Preco_produto { get => preco_produto; set => preco_produto = value; }
+        public string Preco_produto { get => preco_produto; set => preco_produto = value; }
         public string Tipo_produto { get => tipo_produto; set => tipo_produto = value; }
         public int Estoque { get => estoque; set => estoque = value; }
         public byte[] Imagem { get => imagem; set => imagem = value; }
 
-        public Produtos(int codigo, int cod_estabel, string nome, double preco_produto, string tipo_produto, int estoque, byte[] imagem)
+        public Produtos(int codigo, int cod_estabel, string nome, string preco_produto, string tipo_produto, int estoque, byte[] imagem)
         {
             this.Codigo = codigo;
             this.Cod_estabel = cod_estabel;
@@ -81,7 +80,7 @@ namespace icart_be.Models
                 while (ler.Read())
                 {
                     byte[] imagem = (byte[]) ler["img_produto"];
-                    Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), (double) ler["preco_produto"], 
+                    Produtos p = new Produtos((int) ler["cod_produto"], (int) ler["cod_estabel"], ler["nome_produto"].ToString(), ler["preco_produto"].ToString(), 
                         ler["tipo_produto"].ToString(), (int) ler["estoque"], imagem);
                     produtos.Add(p);
                 }

@@ -78,7 +78,7 @@ namespace icart_be.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Alterar()
+        public IActionResult Alterar_produto()
         {
             if (HttpContext.Session.GetString("user") != null)
             {                    
@@ -89,9 +89,11 @@ namespace icart_be.Controllers
         }
 
         [HttpPost]
-        public IActionResult Alterar(int estoque, string nome, string preco, string tipo_produto, int cod_produto)
+        public IActionResult Alterar_produtos(int estoque, string nome, string preco, string tipo_produto, int cod_produto)
         {
-            Produtos p = new Produtos(cod_produto, 0, nome, preco, tipo_produto, estoque, null);
+            Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+        (HttpContext.Session.GetString("user").ToString());
+            Produtos p = new Produtos(cod_produto, e.Codigo, nome, preco, tipo_produto, estoque, null);
             TempData["mensagem"] = p.Alterar(cod_produto, estoque, nome, preco, tipo_produto);
             return RedirectToAction("Infos");
         }

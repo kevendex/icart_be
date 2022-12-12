@@ -122,7 +122,7 @@ namespace icart_be.Models
             }
         }
 
-        public string Alterar(int codigo)
+        public string Alterar(int codigo, int estoque, string nome, string preco, string tipo_produto)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand comando = new MySqlCommand();
@@ -130,10 +130,10 @@ namespace icart_be.Models
             try
             {
                 comando.Connection = con;
-                comando.CommandText = "UPDATE produtos SET estoque = @estoque, nome_produto = @nome_produto, preco_produto = @preco_produto, tipo_produto = @tipo_produto,  WHERE cod_produto = @codigo";
+                comando.CommandText = "UPDATE produtos SET estoque = @estoque, nome_produto = @nome_produto, preco_produto = @preco_produto, tipo_produto = @tipo_produto WHERE cod_produto = @codigo";
                 comando.Parameters.AddWithValue("@estoque", estoque);
                 comando.Parameters.AddWithValue("@nome_produto", nome);
-                comando.Parameters.AddWithValue("@preco_produto", preco_produto);
+                comando.Parameters.AddWithValue("@preco_produto", preco);
                 comando.Parameters.AddWithValue("@tipo_produto", tipo_produto);
                 comando.Parameters.AddWithValue("@codigo", codigo);
                 con.Open();

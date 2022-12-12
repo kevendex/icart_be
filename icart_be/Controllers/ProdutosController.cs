@@ -92,8 +92,8 @@ namespace icart_be.Controllers
         public IActionResult Alterar(int estoque, string nome, string preco, string tipo_produto, int cod_produto)
         {
             Produtos p = new Produtos(cod_produto, 0, nome, preco, tipo_produto, estoque, null);
-            TempData["mensagem"] = p.Alterar(cod_produto);
-            return RedirectToAction("Listar");
+            TempData["mensagem"] = p.Alterar(cod_produto, estoque, nome, preco, tipo_produto);
+            return RedirectToAction("Infos");
         }
 
         public IActionResult Historico()

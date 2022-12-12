@@ -109,23 +109,25 @@ namespace icart_be.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AlterarDados()
+        public IActionResult Alterar()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Alterar_dados(string nome_fantasia, string email, string senha)
+        public IActionResult Alterar(string email, string nome_fantasia, string senha)
         {
-            Estabelecimento e = new Estabelecimento(0, null, null, null, null, email, nome_fantasia, null, null, null, null, null, null, null, senha, null);
-            e.Alterar_dados();
+            Estabelecimento e = JsonConvert.DeserializeObject<Estabelecimento>
+        (HttpContext.Session.GetString("user").ToString());
+
+            e.Alterar_dados(email, nome_fantasia, senha, e.Cnpj);
             Usuario sessao = JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("user").ToString());
             sessao.Nome = nome_fantasia;
             sessao.Email = email;
             sessao.Senha = senha;
             HttpContext.Session.SetString("user", JsonConvert.SerializeObject(sessao));
 
-            return RedirectToAction("Usuario", "Perfil");
+            return RedirectToAction("Sair");
         }
 
         public IActionResult Perfil()

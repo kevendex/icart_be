@@ -128,7 +128,7 @@ namespace icart_be.Models
             }
         }
 
-        public string Alterar_dados()
+        public string Alterar_dados(string email, string nome_fantasia, string senha, string cnpj_estabel)
         {
             MySqlConnection con = new MySqlConnection(conexao);
             MySqlCommand coman = new MySqlCommand();
@@ -137,9 +137,10 @@ namespace icart_be.Models
             {
                 coman.Connection = con;
                 coman.CommandText = "UPDATE estabelecimento SET nome_fantasia = @nome_fantasia , senha = @senha , email_estabel = @email_estabel WHERE cnpj_estabel = @cnpj_estabel";
+                coman.Parameters.AddWithValue("@email_estabel", email);
                 coman.Parameters.AddWithValue("@nome_fantasia", nome_fantasia);
                 coman.Parameters.AddWithValue("@senha", senha);
-                coman.Parameters.AddWithValue("@email_estabel", email);
+                coman.Parameters.AddWithValue("@cnpj_estabel", cnpj_estabel);
                 con.Open();
                 coman.ExecuteNonQuery();
 

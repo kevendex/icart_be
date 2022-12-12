@@ -18,64 +18,55 @@
         }
     </style>
 </head>
-@if (e.Tipo_estabel.Equals("Não assinante"))
-{
-    <br />
-    <nav style="width: 100%; height: 700px; display: flex; margin: 0; justify-content: center; align-content: center">
-        <h1>Faça a compra da assinatura para utilizar dos recursos</h1>
-    </nav>
-}
-else
-{
-    <a href="~/Produtos/Historico" class="transicao">
-        <div class="cont-opcoes-branco">
-            <div class="cont-1-branco">
-                <p class="titulo-p">clique para ver seu</p>
-                <p class="titulo-g">Histórico de vendas</p>
-            </div>
-            <div class="cont-2">
-                <img src="~/img/voltar.png" alt="voltar" class="img-indicativa">
-            </div>
+<a href="~/Produtos/Historico" class="transicao">
+    <div class="cont-opcoes-branco">
+        <div class="cont-1-branco">
+            <p class="titulo-p">clique para ver seu</p>
+            <p class="titulo-g">Histórico de vendas</p>
         </div>
-    </a>
-    <a href="~/Estabelecimento/Perfil" class="transicao">
-        <div class="cont-opcoes-preto">
-            <div class="cont-2">
-                <img src="~/img/perfil-opcoes.jpg" alt="perfil" class="img-indicativa-preta">
-            </div>
-            <div class="cont-1-preto">
-                <p class="titulo-p-branco">clique para as</p>
-                <p class="titulo-g-branco">Informações do perfil</p>
-            </div>
+        <div class="cont-2">
+            <img src="~/img/voltar.png" alt="voltar" class="img-indicativa">
         </div>
-    </a>
-    <a href="~/Produtos/Infos" class="transicao">
-        <div class="cont-opcoes-branco">
-            <div class="cont-1-branco">
-                <p class="titulo-p">clique para ver suas</p>
-                <p class="titulo-g">Informações adicionais</p>
-            </div>
-            <div class="cont-2">
-                <img src="~/img/grafico.webp" alt="grafico" class="img-grafico">
-            </div>
-        </div>
-    </a>
-    <a href="~/Produtos/Cadastro_produto" class="transicao">
-        <div class="cont-opcoes-preto">
-            <div class="cont-2">
-                <img src="~/img/sacola.png" alt="sacola de compras" class="img-sacola">
-            </div>
-            <div class="cont-1-preto">
-                <p class="titulo-p-branco">clique para</p>
-                <p class="titulo-g-branco">Cadastrar produtos</p>
-            </div>
-        </div>
-    </a>
-    <br>
-    <div id="garantias">
-        <img src="~/img/img-garantias.png" alt="" id="img-garantia">
     </div>
-    <br>
-    <br>
+</a>
+<a href="~/Estabelecimento/Perfil" class="transicao">
+    <div class="cont-opcoes-preto">
+        <div class="cont-2">
+            <img src="~/img/perfil-opcoes.jpg" alt="perfil" class="img-indicativa-preta">
+        </div>
+        <div class="cont-1-preto">
+            <p class="titulo-p-branco">clique para as</p>
+            <p class="titulo-g-branco">Informações do perfil</p>
+        </div>
+    </div>
+</a>
+<a href="~/Produtos/Infos" class="transicao">
+    <div class="cont-opcoes-branco">
+        <div class="cont-1-branco">
+            <p class="titulo-p">clique para ver suas</p>
+            <p class="titulo-g">Informações adicionais</p>
+        </div>
+        <div class="cont-2">
+            <img src="~/img/grafico.webp" alt="grafico" class="img-grafico">
+        </div>
+    </div>
+</a>
+<a href="~/Produtos/Cadastro_produto" class="transicao">
+    <div class="cont-opcoes-preto">
+        <div class="cont-2">
+            <img src="~/img/sacola.png" alt="sacola de compras" class="img-sacola">
+        </div>
+        <div class="cont-1-preto">
+            <p class="titulo-p-branco">clique para</p>
+            <p class="titulo-g-branco">Cadastrar produtos</p>
+        </div>
+    </div>
+</a>
+<br>
+<div id="garantias">
+    <img src="~/img/img-garantias.png" alt="" id="img-garantia">
+</div>
+<br>
+<br>
 }
 
